@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="service_checklist_view_list" model="ir.ui.view">
+         <field name="name">service.checklist.view.list</field>
+         <field name="model">service.checklist</field>
+         <field name="arch" type="xml">
+             <list string="Service Category">
+             	<field name="name"/>
+                <field name="active"/>
+             </list>
+         </field>
+    </record>
+
+    <record id='service_checklist_view_form' model='ir.ui.view'>
+        <field name="name">service.checklist.view.form</field>
+        <field name="model">service.checklist</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <field name="checklist_itme_ids">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="required"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="service_checklist_view_search" model="ir.ui.view">
+        <field name="name">service.checklist.view.search</field>
+        <field name="model">service.checklist</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="active"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_service_checklist" model="ir.actions.act_window">
+        <field name="name">Checklist</field>
+        <field name="res_model">service.checklist</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Service Checklist.
+            </p><p>
+                Define checklists to ensure service tasks are completed consistently and efficiently during vehicle maintenance and repair operations.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="garage_checklist_line_view_list" model="ir.ui.view">
+       <field name="name">garage.checklist.line.view.list</field>
+       <field name="model">garage.checklist.line</field>
+       <field name="arch" type="xml">
+           <list string="Service Category">
+              <field name="name"/>
+              <field name="checklist_id"/>
+              <field name="sequence"/>
+              <field name="description"/>
+              <field name="required"/>
+          </list>
+      </field>
+    </record>
+
+      <record id='garage_checklist_line_view_form' model='ir.ui.view'>
+        <field name="name">garage.checklist.line.view.form</field>
+        <field name="model">garage.checklist.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="checklist_id"/>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="description"/>
+                        <field name="required"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="garage_checklist_line_view_search" model="ir.ui.view">
+        <field name="name">garage.checklist.line.view.search</field>
+        <field name="model">garage.checklist.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="checklist_id"/>
+                <field name="sequence"/>
+                <field name="description"/>
+                <field name="required"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_garage_checklist_line" model="ir.actions.act_window">
+        <field name="name">Checklist Item</field>
+        <field name="res_model">garage.checklist.line</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Checklist Item.
+            </p><p>
+            DDefine individual inspection points and maintenance tasks to be included in service checklists for consistent vehicle servicing.
+            </p>
+        </field>
+    </record>
+</odoo>

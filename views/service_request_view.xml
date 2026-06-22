@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="service_request_view_list" model="ir.ui.view">
+         <field name="name">service.request.view.list</field>
+         <field name="model">service.request</field>
+         <field name="arch" type="xml">
+             <list string="Service Request">
+             	<field name="name"/>
+             	<field name="partner_id"/>
+             	<field name="vehical_id"/>
+             	<field name="workshop_id"/>
+             	<!-- <field name="description"/> -->
+             	<field name="request_date"/>
+             	<field name="status"/>
+             </list>
+         </field>
+    </record>
+
+    <record id='service_request_view_form' model='ir.ui.view'>
+        <field name="name">service.request.view.form</field>
+        <field name="model">service.request</field>
+        <field name="arch" type="xml">
+            <form string="Vehical Workshop Detail">
+                <header>
+                    <field name="status" widget = 'statusbar'/>
+                    <button name='action_request_confirm'
+                                string='Confirm'
+                                type = 'object'
+                                class='btn-primary'
+                                 invisible="status != 'new'"
+                    />
+                    <button name='action_request_cancel'
+                                string='Cancel'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible="status != 'new'"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+
+                        <button
+                            name="action_view_job_cards"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-wrench">
+
+                            <field
+                                name="job_card_count"
+                                widget="statinfo"
+                                string="Job Cards"/>
+
+                        </button>
+
+                    </div>
+                    <group string="Vehical Service Request ">
+                        <field name="name" readonly = "1"  force_save="1"/>
+		             	<field name="partner_id" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
+		             	<field name="vehical_id" readonly = "status == 'confirmed'" required = "1" 
+                            options="{'no_open': True}"/>
+		             	<field name="workshop_id" readonly = "status == 'confirmed'" required = "1" 
+                            options="{'no_open': True}"/>
+                        <field name="package_id" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
+		             	<field name="description" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
+		             	<field name="request_date" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
+		             	
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="service_request_view_search" model="ir.ui.view">
+        <field name="name">service.request.view.search</field>
+        <field name="model">service.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+             	<field name="partner_id"/>
+             	<field name="vehical_id"/>
+             	<field name="workshop_id"/>
+                <field name="package_id"/>
+             	<field name="description"/>
+             	<field name="request_date"/>
+             	<field name="status"/>
+             	<group expand="1" string="Group By">
+             		<filter string="Vehical" name='vehical' context="{'group_by':'vehical_id'}"/>
+             		<filter string="Workshop" name='workshop' context="{'group_by':'workshop_id'}"/>
+             	</group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_service_request" model="ir.actions.act_window">
+        <field name="name">Service Request</field>
+        <field name="res_model">service.request</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create workshop for Vehical Service.
+            </p><p>
+                A vehicle service workshop providing professional maintenance, repairs, and vehicle care solutions.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="package_service_line_view_list" model="ir.ui.view">
+         <field name="name">package.service.line.view.list</field>
+         <field name="model">package.service.line</field>
+         <field name="arch" type="xml">
+             <list string="Service Category">
+                <field name="product_id"/>
+                <field name="uom_id"/>
+                <field name="service_package_id"/>
+                <field name="free_of_charge"/>
+             	<field name="discount"/>
+             </list>
+         </field>
+    </record>
+
+    <record id='package_service_line_view_form' model='ir.ui.view'>
+        <field name="name">package.service.line.view.form</field>
+        <field name="model">package.service.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_id" domain="[('type','=','service')]"/>
+                        <field name="uom_id" options = "{'no_open':True}"/>
+                        <field name="service_package_id" required = "1"/>
+                        <field name="free_of_charge"/>
+                        <field name="discount" readonly="free_of_charge" force_save = "1"/>
+                        <field name="list_price" force_save = "1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="package_service_line_view_search" model="ir.ui.view">
+        <field name="name">package.service.line.view.search</field>
+        <field name="model">package.service.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id"/>
+                <field name="uom_id"/>
+                <field name="service_package_id"/>
+                <field name="free_of_charge"/>
+                <field name="discount"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_package_service_line" model="ir.actions.act_window">
+        <field name="name">Package service item</field>
+        <field name="res_model">package.service.line</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Package Service Item.
+            </p><p>
+                Create and manage package service items to define the services included in packages, streamline service configuration, and support accurate package management and reporting.
+            </p>
+        </field>
+    </record>
+</odoo>

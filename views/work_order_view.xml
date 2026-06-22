@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="work_order_view_list" model="ir.ui.view">
+         <field name="name">work.orders.view.list</field>
+         <field name="model">work.orders</field>
+         <field name="arch" type="xml">
+             <list string="Work Order">
+             	<field name="name"/>
+                <field name="job_card_id"/>
+                <field name="machanics_id"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+             </list>
+         </field>
+    </record>
+
+    <record id='work_order_view_form' model='ir.ui.view'>
+        <field name="name">work.orders.view.form</field>
+        <field name="model">work.orders</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget = 'statusbar'/>
+                    <button name = "starting_work"
+                            string = "Start"
+                            type = "object"
+                            class = "btn-primary"
+                            invisible = "state != 'draft'"
+                    />
+                    <button name = "ending_work"
+                            string = "Finished"
+                            type = "object"
+                            class = "btn-primary"
+                            invisible = "state != 'in_progress'"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="job_card_id"/>
+                        <field name="machanics_id"/>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                    </group>
+                    <notebook>
+                        <page string = "Timesheet">
+                            <group>
+                                <field name="job_timesheet_line_ids" nolabel = "1">
+                                    <list editable = "bottom">
+                                        <field name="machanics_id"/>
+                                        <field name="start_time"/>
+                                        <field name="end_time"/>
+                                        <field name="hours"/>
+                                        <field name="labor_cost"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="work_order_view_search" model="ir.ui.view">
+        <field name="name">work.orders.view.search</field>
+        <field name="model">work.orders</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="job_card_id"/>
+                <field name="machanics_id"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_work_order" model="ir.actions.act_window">
+        <field name="name">Work Order</field>
+        <field name="res_model">work.orders</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Service Type.
+            </p><p>
+                Manage vehicle repair and maintenance jobs, assign technicians,
+                track service progress, and monitor work completion in your garage.
+            </p>
+        </field>
+    </record>
+</odoo>

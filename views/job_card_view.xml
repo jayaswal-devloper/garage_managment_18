@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="job_card_view_list" model="ir.ui.view">
+         <field name="name">job.card.view.list</field>
+         <field name="model">job.card</field>
+         <field name="arch" type="xml">
+             <list string="Job Cards">
+             	<field name="name"/>
+             	<field name="service_id"/>
+             	<field name="vehical_model_id"/>
+             	<field name="workshop_id"/>
+             	<field name="machanics_id"/>
+             	<field name="state"/>
+             </list>
+         </field>
+    </record>
+
+    <record id='job_card_view_form' model='ir.ui.view'>
+        <field name="name">job.card.view.form</field>
+        <field name="model">job.card</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name='send_rating_request'
+                                string='Send Rating Request'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible ="state != 'done'"
+
+                    />
+                    <button name='service_diagnosis'
+                                string='Diagnosis'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible ="state in ('in_progress','done')"
+                    />
+
+                    <button name='create_work_order'
+                                string='Create work order'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible ="state != 'in_progress' or vehical_repaird"
+                    />
+
+                    <button name='job_card_done_button'
+                                string='Done'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible ="state in ('received','done') or not vehical_repaird"
+                    />
+
+                    <field name="state" widget = 'statusbar'/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+
+                        <button
+                            name="action_view_job_card_checklist_line"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-check-square-o"
+                            invisible="checklist_done_cont == 0">
+
+                            <field
+                                name="checklist_done_cont"
+                                widget="statinfo"
+                                string="Checklist Done"/>
+
+                        </button>
+
+                        <button
+                            name="action_view_vehical_diagnosis"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-flask"
+                            invisible = "diagnosis_cont == 0">
+
+                            <field
+                                name="diagnosis_cont"
+                                widget="statinfo"
+                                string="Diagnosis"/>
+
+                        </button>
+
+                        <button
+                            name="action_view_work_orders"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-gears"
+                            invisible = "work_order_cont == 0">
+
+                            <field
+                                name="work_order_cont"
+                                widget="statinfo"
+                                string="Work Order"/>
+
+                        </button>
+                    </div>
+                    <group>
+                    	<group>
+                    		<field name="name"/>
+             				<field name="service_id" options = "{'no_open':True}"/>
+             				<field name="partner_id" options = "{'no_open':True}"/>
+             				<field name="vehical_id" options = "{'no_open':True}"/>
+                    	</group>
+                    	<group>
+             				<field name="workshop_id" options = "{'no_open':True}"/>
+             				<field name="machanics_id" options = "{'no_open':True}"/>
+                            <field name="package_id" options = "{'no_open':True}"/>
+                    	</group>
+                    </group>
+                    <group string="Vehical Details">
+                    	<group>
+                    		<field name="make_id" options = "{'no_open':True}"/>
+                    		<field name="vehical_model_id" options = "{'no_open':True}"/>
+                    		<field name="year"/>
+                    		<field name="license_plate"/>
+                    	</group>
+                    	<group>
+                    		<field name="color"/>
+                    		<field name="odometer"/>
+                    		<field name="service_category_id" readonly = "state != 'received'" force_save="1" options = "{'no_open':True}"/>
+                    		<field name="service_type_ids" readonly = "state != 'received'" force_save="1" options = "{'no_open':True}" widget="many2many_tags" 
+                                domain="[('service_category_id', '=', service_category_id)]"/>
+                    		<field name="vehical_repaird" force_save = "1" readonly="1"/>
+                    	</group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description" nolabel = "1"/>
+                            </page>
+                            <page string="Service Charge">
+                                <group>
+                                    <field name="job_card_service_charge_line_ids" nolabel="1" readonly="state == 'in_progress'">
+                                        <list editable="bottom">
+                                            <field name="product_id" domain="[('type','=','service')]"/>
+                                            <field name="description"/>
+                                            <field name="uom_id" options = "{'no_open': '1'}"/>
+                                            <field name="quantity"/>
+                                            <field name="unit_price" readonly = '1' force_save = "1"/>
+                                            <field name="subtotal" readonly = '1' force_save = "1"/>
+                                        </list>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Checklist">
+                                <group>
+                                    <field name="checklist_percentage" widget="progressbar" readonly="state == 'done'"/>
+                                    <field name ="service_checklist_id" colspan="2" readonly="state == 'done'"/>
+                                    <field name="job_card_checklist_line_ids" nolabel="1" readonly="state == 'done'">
+                                        <list editable="bottom">
+                                            <field name="sequence"/>
+                                            <field name="name"/>
+                                            <field name="description"/>
+                                            <field name="required"/>
+                                            <field name="done"/>
+                                            <field name="note"/>
+                                            <field name="completed_by"/>
+                                            <field name="completed_on"/>
+                                        </list>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Spare Parts">
+                                <field name = "spare_parts_ids" nolabel = "1" readonly="state == 'in_progress'">
+                                    <list editable="bottom">
+                                        <field name="product_id" domain="[('type','=','consu')]"/>
+                                        <field name="uom_id"/>
+                                        <field name="quantity"/>
+                                        <field name="unit_price"/>
+                                        <field name="subtotal" readonly = "1" force_save = "1"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Timesheet">
+                                <field name="job_timesheet_ids" nolabel="1" readonly="state == 'done'">
+                                    <list editable="bottom">
+                                        <field name="machanics_id"/>
+                                        <field name="start_time"/>
+                                        <field name="end_time"/>
+                                        <field name="hours" readonly = "1" force_save = "1"/>
+                                        <field name="labor_cost"/>
+                                    </list>
+                                </field>
+                            </page>
+                             <page string="Image">
+                                <group colspan="2" name="product_template_images">
+                                    <field
+                                        colspan="2"
+                                        name="job_image_ids"
+                                        class="o_website_sale_image_list"
+                                        context="{'default_name': name}"
+                                        mode="kanban"
+                                        add-label="Add Media"
+                                        nolabel="1"
+                                        widget="x2_many_media_viewer"
+                                        options="{'convert_to_webp': True}"
+                                    />
+                                </group>
+                            </page>
+                            <page string="Customer Rating">
+                                <group>
+                                    <field name="customer_rating" widget = "priority"/>
+                                    <field name="customer_description"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="job_card_view_search" model="ir.ui.view">
+        <field name="name">job.card.view.search</field>
+        <field name="model">job.card</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+ 				<field name="service_id"/>
+ 				<field name="partner_id"/>
+ 				<field name="vehical_id"/>
+ 				<field name="workshop_id"/>
+             	<field name="machanics_id"/>
+             	<field name="make_id"/>
+        		<field name="vehical_model_id"/>
+        		<field name="year"/>
+        		<field name="license_plate"/>
+        		<field name="color"/>
+        		<field name="odometer"/>
+        		<field name="service_type_ids" required = "1" />
+        		<field name="service_category_id"/>
+        		<field name="vehical_repaird"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_job_card" model="ir.actions.act_window">
+        <field name="name">Job Card</field>
+        <field name="res_model">job.card</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Job Card for Vehicle Service.
+            </p><p>
+                A job card helps track vehicle inspections, repairs, maintenance tasks, spare parts, labor charges, and service progress for your customer's vehicle.
+            </p>
+        </field>
+    </record>
+</odoo>

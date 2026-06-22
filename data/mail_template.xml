@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate = "1">
+
+        <record id="mail_template_send_review_request" model="mail.template">
+            <field name="name">Service Rating Request</field>
+
+            <field name="model_id" ref="garage_managment.model_job_card"/>
+
+            <field name="subject">How was your car service experience?</field>
+
+            <field name="email_from">
+                {{ user.email_formatted or '' }}
+            </field>
+
+            <field name="partner_to">
+                {{ object.partner_id.id if object.partner_id else False }}
+            </field>
+
+            <field name="auto_delete" eval="True"/>
+
+            <field name="body_html" type="html">
+                <div style="font-family: Arial, sans-serif; font-size: 13px;">
+
+                    <p>
+                        Dear <t t-out="object.partner_id.name or ''"/>,
+                    </p>
+
+                    <p>
+                        Thank you for choosing our car service.
+                        We hope you are satisfied with your vehicle service experience.
+                    </p>
+
+                    <p>
+                        We would appreciate your feedback and rating.
+                        Your opinion helps us improve our service quality.
+                    </p>
+
+                    <p style="margin-top:20px;">
+                        <a t-att-href="'#'"
+                         style="background-color:#875A7B;
+                         padding:10px 15px;
+                         color:white;
+                         text-decoration:none;
+                         border-radius:5px;
+                         display:inline-block;">
+                         Give Your Rating
+                     </a>
+                 </p>
+
+                 <p>
+                    Thank you,<br/>
+                    <t t-out="user.name"/>
+                </p>
+
+            </div>
+        </field>
+    </record>
+
+</data>
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="vehical_worshop_view_list" model="ir.ui.view">
+         <field name="name">vehical.workshop.view.list</field>
+         <field name="model">vehical.workshop</field>
+         <field name="arch" type="xml">
+             <list string="Vehical Workshop">
+             	<field name="name"/>
+             	<field name="code"/>
+             	<field name="address"/>
+             	<field name="phone"/>
+             	<field name="email"/>
+             	<field name="Workshop_manager_id"/>
+             	<field name="active"/>
+             </list>
+         </field>
+    </record>
+
+    <record id='vehical_worshop_view_form' model='ir.ui.view'>
+        <field name="name">vehical.workshop.view.form</field>
+        <field name="model">vehical.workshop</field>
+        <field name="arch" type="xml">
+            <form string="Vehical Workshop Detail">
+                <sheet>
+                    <group string="Vehical Workshop Detail">
+                        <group>
+                            <field name="name"/>
+             				<field name="code"/>
+             				<field name="address"/>
+             				<field name="phone"/>
+                        </group>
+                        <group>
+                        	<field name="email"/>
+			             	<field name="Workshop_manager_id" required = "True"/>
+			             	<field name="machanics_ids" create='0' widget="many2many_tags">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                </list>
+                            </field>
+			             	<field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="vehical_worshop_view_search" model="ir.ui.view">
+        <field name="name">vehical.workshop.view.search</field>
+        <field name="model">vehical.workshop</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+             	<field name="code"/>
+             	<field name="address"/>
+             	<field name="phone"/>
+             	<field name="email"/>
+             	<field name="Workshop_manager_id"/>
+             	<field name="machanics_ids"/>
+             	<field name="active"/>
+             	<group expand="1" string="Group By">
+             		<filter string="Manager" name='manager' context="{'group_by':'Workshop_manager_id'}"/>
+             	</group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vehical_worshop" model="ir.actions.act_window">
+        <field name="name">Workshops</field>
+        <field name="res_model">vehical.workshop</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Vehical Service Request.
+            </p><p>
+                Track vehicle maintenance, repair requests, inspections, and service activities by creating a new service request.
+            </p>
+        </field>
+    </record>
+</odoo>

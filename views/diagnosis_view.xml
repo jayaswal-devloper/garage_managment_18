@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="vehicle_diagnosis_view_list" model="ir.ui.view">
+         <field name="name">vehicle.diagnosis.view.list</field>
+         <field name="model">vehicle.diagnosis</field>
+         <field name="arch" type="xml">
+             <list string="Diagnosis">
+             	<field name="job_card_id"/>
+             	<field name="diagnosis_detail"/>
+             	<field name="state"/>
+             </list>
+         </field>
+    </record>
+
+    <record id='vehicle_diagnosis_view_form' model='ir.ui.view'>
+        <field name="name">vehicle.diagnosis.view.form</field>
+        <field name="model">vehicle.diagnosis</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name='create_purchase_rfq'
+                                string='Create Purchase RFQ'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible="purchase_order_count > 0 or state != 'confirmed'"
+
+                    />  
+
+                    <button name='create_sale_order'
+                                string='Create Sale Order'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible="sale_order_count > 0 or state != 'confirmed'"
+
+                    />
+
+                    <button name='confirm_diagnosis'
+                                string='Confirm'
+                                type = 'object'
+                                class='btn-primary'
+                                invisible ="state in('confirmed')"
+                    />
+
+                    <field name="state" widget = 'statusbar'/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+
+                        <button name="action_view_purchase_orders"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-shopping-cart"
+                                invisible = "purchase_order_count == 0">
+
+                            <field name="purchase_order_count"
+                                   string="Purchase Orders"
+                                   widget="statinfo"/>
+                        </button>
+
+                        <button name="action_view_sale_orders"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-file-text-o"
+                                invisible = "sale_order_count == 0">
+
+                            <field name="sale_order_count"
+                                   string="Sale Orders"
+                                   widget="statinfo"/>
+                        </button>
+
+                    </div>
+                    <group>
+                    	<group>
+                    		<field name="job_card_id" readonly = '1' force_save = '1' options = "{'no_open': True }"/>
+                    		<field name="diagnosis_detail"/>
+                    		<field name="machanics_id" readonly = '1' force_save = '1' options = "{'no_open':True}"/>
+                    	</group>
+                        <notebook>
+                            <page string="Estimates">
+                                <group string = "Service Charge">
+                                    <field name="job_card_service_charge_line_ids" nolabel="1">
+                                        <list editable = "bottom">
+                                            <field name="product_id"/>
+                                            <field name="uom_id" />
+                                            <field name="quantity" />
+                                            <field name="unit_price" force_save = "1"/>
+                                            <field name="subtotal" force_save = "1"/>
+                                        </list>
+                                    </field>
+                                </group>
+                                <group string = "Spare Parts">
+                                    <field name="job_card_vehicle_part_ids" nolabel="1">
+                                        <list editable = "bottom">
+                                            <field name="product_id"/>
+                                            <field name="uom_id"/>
+                                            <field name="quantity"/>
+                                            <field name="unit_price"/>
+                                            <field name="subtotal"/>
+                                        </list>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="vehicle_diagnosis_view_search" model="ir.ui.view">
+        <field name="name">vehicle.diagnosis.view.search</field>
+        <field name="model">vehicle.diagnosis</field>
+        <field name="arch" type="xml">
+            <search>
+               	<field name="job_card_id"/>
+        		<field name="diagnosis_detail"/>
+        		<field name="machanics_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vehicle_diagnosis" model="ir.actions.act_window">
+        <field name="name">Vehical Diagnosis</field>
+        <field name="res_model">vehicle.diagnosis</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                 Create a Vehicle Diagnosis Record.
+            </p><p>
+                A diagnosis record helps identify and document vehicle issues, faults, and root causes.
+        		It includes inspection findings, technical checks, and problem analysis before repair work starts.
+            </p>
+        </field>
+    </record>
+</odoo>

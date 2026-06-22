@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Garage Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-light">
+
+<div class="bg-white border-bottom border-3 py-3 px-4 d-flex align-items-center justify-content-between shadow-sm" style="border-color:#1a73e8!important;">
+  <img src="logo.svg" style="width:15%;height:15%;" alt="College Logo">
+  <div class="text-end">
+    <div class="text-muted small text-uppercase fw-semibold mb-1" style="letter-spacing:.5px">Supported Modules</div>
+    <span class="badge rounded-pill border border-2" style="color:#1a73e8;border-color:#1a73e8!important;background:transparent">Customer & Vehicle Management</span>
+    <span class="badge rounded-pill border border-2" style="color:#1a73e8;border-color:#1a73e8!important;background:transparent">Service & Job Card Management</span>
+    <span class="badge rounded-pill border border-2" style="color:#1a73e8;border-color:#1a73e8!important;background:transparent">Work Order & Timesheet</span>
+    <span class="badge rounded-pill border border-2" style="color:#1a73e8;border-color:#1a73e8!important;background:transparent">Spare Parts Management</span>
+    <span class="badge rounded-pill border border-2" style="color:#1a73e8;border-color:#1a73e8!important;background:transparent">Sales & Purchase Integration</span>
+  </div>
+</div>
+
+<div class="text-white text-center p-3 mt-3" style="background-color: #1a73e8; border-radius: 20px;">
+  <h1 class="fw-bold display-5 mb-3">Smart Garage Management</h1>
+  <p class="lead mb-1 mx-auto" style="max-width:580px;opacity:.9">
+     Streamline garage operations with customer and vehicle management, service requests, job cards, work orders, spare parts tracking, diagnosis, timesheets, sales and purchase order integration, and complete service lifecycle management in Odoo.
+  </p> 
+</div>
+
+<div class="p-3 bg-light"> 
+  <h2 class="text-center fw-bold mb-1" style="color:#1a73e8">Key Features</h2>
+  <p class="text-center text-muted mb-4">Everything you need to streamline garage and workshop operations</p>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 mx-auto" style="max-width:1250px">
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="registration_logo.png.png" style="width:130%;height:130%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Customer & Vehicle Management</h5>
+          <p class="text-muted small"> Manage customer profiles, vehicle information, service history, and vehicle details in a centralized system.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="course_logo.png" style="width:220%;height:210%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Service Request Management</h5>
+          <p class="text-muted small">Create and track vehicle service requests efficiently.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="academic_term_logo.png" style="width:140%;height:140%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Job Card Management</h5>
+          <p class="text-muted small">Generate detailed job cards with services, spare parts, images, checklists, and diagnosis details.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="academic_tracking_logo.png" style="width:115%;height:115%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Work Order Management</h5>
+          <p class="text-muted small">Assign technicians and track repair progress through work orders.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="portal_access_icon.png" style="width:118%;height:120%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Spare Parts Management</h5>
+          <p class="text-muted small">Manage spare parts usage and inventory integration.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="role_based_icon.png" style="width:105%;height:105%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Sales & Purchase Integration</h5>
+          <p class="text-muted small">Generate sales orders and purchase orders directly from job cards.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="role_based_icon.png" style="width:105%;height:105%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Timesheet Tracking</h5>
+          <p class="text-muted small">Record technician working hours and service duration.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="role_based_icon.png" style="width:105%;height:105%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Vehicle Diagnosis</h5>
+          <p class="text-muted small">Diagnose issues and approve repair activities.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mb-3 overflow-hidden" style="width:70px;height:70px;background:#1a73e822;margin:auto;">
+            <img src="role_based_icon.png" style="width:105%;height:105%;object-fit:contain;">
+          </div>
+          <h5 class="fw-bold">Customer Feedback & Ratings</h5>
+          <p class="text-muted small">Collect customer ratings and service feedback after job completion.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="py-3 px-0" style="background-color:#F6F7F8; border-radius: 20px;">
+  <h2 class="text-center fw-bold mb-1" style="color:#1a73e8">Configuration Flow</h2>
+  <p class="text-center text-muted mb-4">Step-by-step configuration of course, semester, and academic term.</p>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 g-4 mx-auto" style="max-width:1240px">
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Education Configuration</h5>
+        <img src="education_detail.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">Admin first creates the education details (like 10th, 12th, etc.) before any student registration. Then create a year.</p>  
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Course & Term Assignment</h5>
+        <img src="semeste.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">When you select a course and enter the semester, the system automatically creates the semester linked to that course without affecting subjects.</p> 
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Eligibility for the Course</h5>
+        <img src="eligibility.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">The requirements you need to fulfill to take this course.</p>   
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Academic Term Configuration</h5>
+        <img src="eligibility.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">The academic term name includes the course, semester, and academic year (e.g., B.COM - SEM-1 - 2025-26).</p>   
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="py-3 px-0" style="background-color:#F6F7F8; border-radius: 20px;">
+  <h2 class="text-center fw-bold mb-1" style="color:#1a73e8">System Flow</h2>
+  <p class="text-center text-muted mb-4">Step-by-step workflow from registration to portal access</p>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 g-4 mx-auto" style="max-width:1240px">
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Registration</h5>
+        <img src="registration.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">Student fills out the registration form on the website. Email is unique.</p>  
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Requested Data</h5>
+        <img src="request.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">After form submission, the application is marked as ‘Applied’.</p>   
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Portal/Admin User</h5>
+        <img src="confirm_reque.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">Once approved, a user is created: students as portal users, and faculty/admin as internal users.</p> 
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3">
+        <h5 class="fw-bold">Contact Type</h5>
+        <img src="contact_type.png" style="width:100%;height:200px;object-fit:contain;">
+        <p class="text-muted small">A selection field is added to define user roles: Admin, Teacher, Student, and Staff.
+This field helps categorize contacts and manage user access accordingly.</p> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="p-2" style="border-radius: 20px;">
+  <img src="services.png" style="width:100%;height:100%;object-fit:contain;"> 
+</div>
+
+<div class="bg-white p-3">
+  <h2 class="text-center fw-bold mb-1" style="color:#1a73e8">Get In Touch</h2>
+  <p class="text-center text-muted mb-4">We're here to help - reach out through any channel</p>
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mx-auto" style="max-width:1240px">
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3 border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body px-1">
+          <i class="fa fa-envelope fs-1 mb-3 " style="color: #1a73e8;"></i>
+          <h6 class="fw-bold">Email Support</h6>
+          <a href="mailto:info@techvaria.com" class="small text-decoration-none" style="color:#1a73e8">info@techvaria.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3 border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body px-1">
+          <i class="fa fa-comments fs-1 mb-3" style="color: #1a73e8;"></i>
+          <h6 class="fw-bold">Website</h6>
+          <a href="https://techvaria.com" class="small text-decoration-none" style="color:#1a73e8">https://techvaria.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3 border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body px-1">
+          <i class="fa fa-youtube-play fs-1 mb-3" style="color: #1a73e8;"></i>
+          <h6 class="fw-bold">YouTube</h6>
+          <a href="https://www.youtube.com/@Techvaria" class="small text-decoration-none" style="color:#1a73e8">https://www.youtube.com/@Techvaria</a>
+        </div>  
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm text-center p-3 border-top border-3" style="border-color:#1a73e8!important">
+        <div class="card-body px-1">
+          <i class="fa fa-map-marker fs-1 mb-3" style="color: #1a73e8;"></i>
+          <h6 class="fw-bold">Headquarters</h6>
+          <div style="display: inline-block; text-align: left;">
+            <p class="small text-muted mb-0"><i class="fa fa-map-marker text-black fs-5"></i> Bangalore, Gujarat, Dubai</p>
+          </div>  
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_garage_managment" model="ir.module.category">
+        <field name="name">Garage Managment</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="module_category_garage_managment_sub" model="ir.module.category">
+        <field name="name">Garage Managment</field>
+        <field name="parent_id" ref="module_category_garage_managment"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_garage_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_garage_managment_sub"/>
+    </record>
+
+    <record id="group_garage_admin" model="res.groups">
+        <field name="name">Administrator</field> 
+        <field name="category_id" ref="module_category_garage_managment_sub"/>
+        <field name="implied_ids" eval="[(4, ref('group_garage_user'))]"/>
+    </record>
+
+    <record id="group_garage_manager" model="res.groups">
+        <field name="name">Manager</field> 
+        <field name="category_id" ref="module_category_garage_managment_sub"/>
+        <field name="implied_ids" eval="[(4, ref('group_garage_admin'))]"/>
+    </record>
+
+    <record id="group_garage_service_man" model="res.groups">
+        <field name="name">Service Man</field> 
+        <field name="category_id" ref="module_category_garage_managment_sub"/>
+        <field name="implied_ids" eval="[(4, ref('group_garage_manager'))]"/>
+    </record>
+
+
+</odoo>
