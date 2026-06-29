@@ -6,8 +6,19 @@
 		<field name="model">sale.order</field>
 		<field name ="inherit_id" ref = "sale.view_order_form"/>
 		<field name="arch" type="xml">
+			<xpath expr="//field[@name='payment_term_id']" position="after">
+			    <field name="job_card_id" invisible = "is_package_so" readonly = "1"/>
+			</xpath>
 			<xpath expr="//field[@name='sale_order_template_id']" position="after">
-			    <field name="job_card_id"/>
+			    <field name="vehicle_id" domain="[('partner_id', '=', partner_id)]" invisible = "not is_package_so"/>
+			</xpath>
+
+		 	<xpath expr="//field[@name = 'product_template_id']" position = "attributes">
+				<attribute name="domain">[('is_service_package', '=', parent.is_package_so)]</attribute>
+			</xpath> 
+
+			<xpath expr="//field[@name='sale_order_template_id']" position = "after">
+				<field name = "is_package_so"/>
 			</xpath>
 		</field>
 	</record>

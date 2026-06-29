@@ -11,7 +11,8 @@ class ChecklistLine(models.Model):
         string="Item"
     )
     checklist_id = fields.Many2one(
-        comodel_name='service.checklist'
+        comodel_name='service.checklist',
+        string="Checklist"
     )
     sequence = fields.Integer(
         string="Sequence"

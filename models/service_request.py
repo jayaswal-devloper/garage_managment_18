@@ -17,7 +17,7 @@ class ServiceRequest(models.Model):
         string="Customer"
     )
     vehical_id = fields.Many2one(
-        comodel_name="fleet.vehicle",
+        comodel_name="vehicle.detail",
         string="Vehicle",
         required =True
     )
@@ -46,6 +46,32 @@ class ServiceRequest(models.Model):
 
 
 
+
+
+
+
+    @api.onchange('partner_id', 'vehical_id')
+    def _onchange_partner_vehicle(self):
+        self.package_id = False
+
+        if self.partner_id and self.vehical_id:
+            package_history = self.env['service.package.history'].search([
+                ('partner_id', '=', self.partner_id.id),
+                ('vehicle_id', '=', self.vehical_id.id),
+                ('state', '=', 'active')
+            ], limit=1)
+            print("\n\n\n\n\n\n  package_history",package_history)
+
+            if package_history:
+                print("going on a package history")
+                service_package = self.env['service.packages'].search([
+                    ('product_id', '=', package_history.package_id.id)
+                ], limit=1)
+                print("\n\n\n\n\n\n  package_history",service_package)
+
+                if service_package:
+                    self.package_id = service_package.id
+
     @api.model
     def create(self,vals_list):
         if vals_list.get('name','New') == 'New':
@@ -71,7 +97,7 @@ class ServiceRequest(models.Model):
 
     def action_request_confirm(self):
         for rec in self:
-            rec.status = 'confirmed'
+            rec.status = 'confirmed' 
             if rec.name:
                 existing_job_card = self.env['job.card'].sudo().search([('service_id','=',rec.name)])
                 if not existing_job_card:
@@ -79,12 +105,12 @@ class ServiceRequest(models.Model):
                         'service_id':rec.id,
                         'partner_id':rec.partner_id.id,
                         'vehical_id':rec.vehical_id.id,
-                        'workshop_id':rec.workshop_id.id,
+                        'workshop_id':rec.workshop_id.id, 
                         'machanics_id':rec.workshop_id.Workshop_manager_id.id,
-                        'make_id' : rec.vehical_id.model_id.brand_id.id,
+                        'make_id' : rec.vehical_id.model_id.make_id.id,
                         'vehical_model_id':rec.vehical_id.model_id.id,
-                        'year' : rec.vehical_id.model_id.model_year,
-                        'license_plate' : rec.vehical_id.license_plate,
+                        'year' : rec.vehical_id.model_year,
+                        'license_plate' : rec.vehical_id.name,
                         'color' : rec.vehical_id.color,
                         'odometer' : rec.vehical_id.odometer,
                         'package_id':rec.package_id.id,
@@ -99,3 +125,28 @@ class ServiceRequest(models.Model):
         for rec in self:
             rec.status = 'cancelled'
 
+
+    # @api.onchange('partner_id', 'vehical_id')
+    # def _onchange_partner_vehicle_package(self):
+    #     for rec in self:
+    #         rec.package_id = False
+
+    #         if not rec.partner_id or not rec.vehical_id:
+    #             return
+
+    #         today = fields.Date.today()
+
+    #         package_history = self.env['service.package.history'].search([
+    #             ('partner_id', '=', rec.partner_id.id),
+    #             ('vehicle_id', '=', rec.vehical_id.id),
+    #             ('state', '=', 'active'),
+    #             ('start_date', '<=', today),
+    #             ('expired_date', '>=', today),
+    #         ], limit=1)
+    #         print("package history",package_history)
+    #         if package_history:
+    #             packge_name = self.env['service.packages'].search([
+    #                 ('product_id','=',package_history.id)
+    #                 ])
+    #             print("\n\n\n\n\n ",packge_name.id)
+    #             rec.package_id = packge_name.id

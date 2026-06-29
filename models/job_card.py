@@ -26,8 +26,8 @@ class JobCard(models.Model):
         copy=False
     )
     vehical_id = fields.Many2one(
-        comodel_name = "fleet.vehicle",
-        string="Vehical",
+        comodel_name = "vehicle.detail",
+        string="Vehicle",
         readonly=True,
         copy=False
     )
@@ -52,14 +52,14 @@ class JobCard(models.Model):
         copy=False
     )
     make_id = fields.Many2one(
-        comodel_name = "fleet.vehicle.model.brand",
+        comodel_name = "garage.vehicle.make",
         string = "Make",
         readonly=True,
         copy=False
     )
     vehical_model_id = fields.Many2one(
-        comodel_name = "fleet.vehicle.model",
-        string="Vehical Model",
+        comodel_name = "garage.vehicle.model",
+        string="Vehicle Model",
         readonly=True,
         copy=False
     )
@@ -92,7 +92,7 @@ class JobCard(models.Model):
         string="Service Category"
     )
     vehical_repaird = fields.Boolean(
-        string="Vehical Repaired"
+        string="Vehicle Repaired"
     )
     state = fields.Selection(
         [('received','Received'),('in_progress','In Progress'),('done','Done')],

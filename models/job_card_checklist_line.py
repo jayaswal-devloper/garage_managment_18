@@ -36,7 +36,7 @@ class JobCardChecklistLine(models.Model):
     )
     checklist_tmpl_id = fields.Many2one(
         comodel_name = "service.checklist",
-        string = "Template",
+        string="Checklist Template",
         compute = "_compute_job_card_id"
     )
     job_card_id = fields.Many2one(
@@ -47,15 +47,17 @@ class JobCardChecklistLine(models.Model):
 
     @api.depends('job_card_id')
     def _compute_job_card_id(self):
-        if self.job_card_id:
-            self.checklist_tmpl_id = self.job_card_id.service_checklist_id.id
-
-
-    @api.depends('required')
-
-    def _check_required_done(self):
         for rec in self:
-            if rec.required and not rec.done:
-                raise ValidationError(
-                    f"'{rec.name}' is a required checklist item. Please complete it before marking the job card as completed."
-                )
+            if rec.job_card_id:
+                rec.checklist_tmpl_id = rec.job_card_id.service_checklist_id.id
+            else:
+                rec.checklist_tmpl_id = False
+
+
+    # @api.constrains('required','done')
+    # def _check_required_done(self):
+    #     for rec in self:
+    #         if rec.required and not rec.done:
+    #             raise ValidationError(
+    #                 f"'{rec.name}' is a required checklist item. Please complete it before marking the job card as completed."
+    #             )

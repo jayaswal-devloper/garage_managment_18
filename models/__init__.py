@@ -1,4 +1,3 @@
-from . import fleet_vehicle_model
 from . import product_template
 from . import vehical_workshop
 from . import hr_employee
@@ -12,7 +11,6 @@ from . import job_timesheet
 from . import work_order
 from . import check_list_line
 from . import job_card_checklist_line
-from . import fleet_vehicle
 from . import diagnosis
 from . import package_service_line
 from . import job_card_service_charge_line
@@ -21,3 +19,9 @@ from . import job_card_timesheet_line
 from . import purchase_order
 from . import sale_order
 from . import job_images
+from . import garage_vehicle_make
+from . import garage_vehicle_model
+from . import vehicle_category
+from . import vehicle_detail
+from . import service_package_history
+from . import res_partner

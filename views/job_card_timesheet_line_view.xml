@@ -20,19 +20,49 @@
         <field name="name">job.card.timesheet.line.view.form</field>
         <field name="model">job.card.timesheet.line</field>
         <field name="arch" type="xml">
+
             <form>
                 <sheet>
+
+                    <div class="oe_title">
+                        <label for="work_order_id"/>
+                        <h1>
+                            <field name="work_order_id"/>
+                        </h1>
+                    </div>
+
+
                     <group>
-                        <field name="job_card_id"/>
-                        <field name="work_order_id"/>
-                        <field name="machanics_id"/>
-                        <field name="end_time"/>
-                        <field name="hours"/>
-                        <field name="labor_cost"/>
+
+                        <group string="Work Details">
+                            <field name="job_card_id"
+                                   options="{'no_open': True}"/>
+
+                            <field name="work_order_id"
+                                   options="{'no_open': True}"/>
+
+                            <field name="machanics_id"/>
+                        </group>
+
+
+                        <group string="Time And Cost">
+                            <field name="end_time"/>
+
+                            <field name="hours"/>
+
+                            <field name="labor_cost"
+                                   readonly="1"/>
+                        </group>
+
                     </group>
+
+
                 </sheet>
+
                 <chatter/>
+
             </form>
+
         </field>
     </record>
 

@@ -1,0 +1,72 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+
+	<record id ="service_package_history_list_view" model = "ir.ui.view">
+		<field name = "name">service.package.history.list.view</field>
+		<field name = "model">service.package.history</field>
+		<field name = "arch" type = "xml">
+			<list>
+				<field name = "partner_id"/>
+				<field name = "sale_order_id"/>
+				<field name = "vehicle_id"/>
+				<field name = "state"/>
+				<field name = "package_id"/>
+				<field name = "start_date"/>
+				<field name = "expired_date"/>
+			</list>
+		</field>
+	</record>
+
+	<record id ="service_package_history_form_view" model = "ir.ui.view">
+		<field name = "name">service.package.history.form.view</field>
+		<field name = "model">service.package.history</field>
+		<field name = "arch" type = "xml">
+			<form>
+				<header>
+					<field name = "state" widget = "statusbar"/>
+				</header>
+				<sheet>
+					<group>
+						<field name = "partner_id" readonly = "state != 'draft'" options = "{'no_open':True}" force_save = "1"/>
+						<field name = "sale_order_id" readonly = "state != 'draft'" options = "{'no_open':True}" force_save = "1"/>
+						<field name = "vehicle_id" required = "1" readonly = "state != 'draft'" options = "{'no_open':True}" force_save = "1"/>
+						<field name = "package_id" required = "1" readonly = "state != 'draft'" options = "{'no_open':True}" force_save = "1"/>
+						<field name = "start_date" readonly = "state != 'draft'" force_save = "1"/>
+						<field name = "expired_date" readonly = "state != 'draft'" force_save = "1"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id ="service_package_history_search_view" model = "ir.ui.view">
+		<field name = "name">service.package.history.search.view</field>
+		<field name = "model">service.package.history</field>
+		<field name = "arch" type = "xml">
+			<search>
+				<field name = "partner_id"/>
+				<field name = "sale_order_id"/>
+				<field name = "vehicle_id"/>
+				<field name = "state"/>
+				<field name = "package_id"/>
+				<field name = "start_date"/>
+				<field name = "expired_date"/>
+			</search>
+		</field>
+	</record>
+
+	<record id ='action_service_package_history' model='ir.actions.act_window'>
+		<field name="name">Service Package History</field>
+        <field name="res_model">service.package.history</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Service History package
+            </p><p>
+             
+            </p>
+        </field>
+	</record>
+
+</odoo>

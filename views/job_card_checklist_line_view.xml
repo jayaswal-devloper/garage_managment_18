@@ -23,27 +23,41 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_title">
+                        <label for="job_card_id"/>
+                        <h1>
+                            <field name="job_card_id" readonly = '1' force_save = '1' options = "{'no_open': True }"/>
+                        </h1>
+                    </div>
+                        
+
                     <group>
                         <group>
-                            <field name="job_card_id"/>
+                            <field name="checklist_tmpl_id"/>
                             <field name="name"/>
-                            <field name="description"/>
+                            <field name="required" widget = "boolean_toggle"/>
+                            <field name="sequence"/>
                         </group>
-                        <group>
-                            <field name ="checklist_tmpl_id"/>
-                        </group>
-                        <group>
-                            <field name="required"/>
-                            <field name="completed_on"/>
-                            <field name="note"/>
-                        </group>
+
                         <group>
                             <field name="done"/>
                             <field name="completed_by"/>
-                            <field name="sequence"/>
+                            <field name="completed_on"/>
                         </group>
                     </group>
+
+
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+
+
+                    <group string="Notes">
+                        <field name="note" nolabel="1"/>
+                    </group>
+
                 </sheet>
+
                 <chatter/>
             </form>
         </field>

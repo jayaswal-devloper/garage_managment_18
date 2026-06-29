@@ -96,9 +96,13 @@
 
                         </button>
                     </div>
-                    <group>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="e.g. Model S" class="w-100" readonly = "1"  force_save="1"/>
+                        </h1>
+                    </div>
+                    <group string ="Service Details">
                     	<group>
-                    		<field name="name"/>
              				<field name="service_id" options = "{'no_open':True}"/>
              				<field name="partner_id" options = "{'no_open':True}"/>
              				<field name="vehical_id" options = "{'no_open':True}"/>
@@ -109,7 +113,7 @@
                             <field name="package_id" options = "{'no_open':True}"/>
                     	</group>
                     </group>
-                    <group string="Vehical Details">
+                    <group string="Vehicle Details">
                     	<group>
                     		<field name="make_id" options = "{'no_open':True}"/>
                     		<field name="vehical_model_id" options = "{'no_open':True}"/>
@@ -125,10 +129,12 @@
                     		<field name="vehical_repaird" force_save = "1" readonly="1"/>
                     	</group>
                         <notebook>
-                            <page string="Description">
-                                <field name="description" nolabel = "1"/>
+                            <page string="Notes">
+                                <group>
+                                    <field name="description" nolabel = "1"/>
+                                </group>
                             </page>
-                            <page string="Service Charge">
+                            <page string="Service Charges">
                                 <group>
                                     <field name="job_card_service_charge_line_ids" nolabel="1" readonly="state == 'in_progress'">
                                         <list editable="bottom">
@@ -142,9 +148,23 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="Checklist">
+                            
+                            <page string="Spare Parts">
                                 <group>
-                                    <field name="checklist_percentage" widget="progressbar" readonly="state == 'done'"/>
+                                    <field name = "spare_parts_ids" nolabel = "1" readonly="state == 'in_progress'">
+                                        <list editable="bottom">
+                                            <field name="product_id" domain="[('type','=','consu')]"/>
+                                            <field name="uom_id"/>
+                                            <field name="quantity"/>
+                                            <field name="unit_price"/>
+                                            <field name="subtotal" readonly = "1" force_save = "1"/>
+                                        </list>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Inspection Checklist">
+                                <group>
+                                    <field name="checklist_percentage" widget="progressbar" readonly="state == 'done'" string = "Completion"/>
                                     <field name ="service_checklist_id" colspan="2" readonly="state == 'done'"/>
                                     <field name="job_card_checklist_line_ids" nolabel="1" readonly="state == 'done'">
                                         <list editable="bottom">
@@ -160,29 +180,20 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="Spare Parts">
-                                <field name = "spare_parts_ids" nolabel = "1" readonly="state == 'in_progress'">
-                                    <list editable="bottom">
-                                        <field name="product_id" domain="[('type','=','consu')]"/>
-                                        <field name="uom_id"/>
-                                        <field name="quantity"/>
-                                        <field name="unit_price"/>
-                                        <field name="subtotal" readonly = "1" force_save = "1"/>
-                                    </list>
-                                </field>
+                            <page string="Work Log">
+                                <group>
+                                    <field name="job_timesheet_ids" nolabel="1" readonly="state == 'done'">
+                                        <list editable="bottom">
+                                            <field name="machanics_id"/>
+                                            <field name="start_time"/>
+                                            <field name="end_time"/>
+                                            <field name="hours" readonly = "1" force_save = "1"/>
+                                            <field name="labor_cost"/>
+                                        </list>
+                                    </field>
+                                </group>
                             </page>
-                            <page string="Timesheet">
-                                <field name="job_timesheet_ids" nolabel="1" readonly="state == 'done'">
-                                    <list editable="bottom">
-                                        <field name="machanics_id"/>
-                                        <field name="start_time"/>
-                                        <field name="end_time"/>
-                                        <field name="hours" readonly = "1" force_save = "1"/>
-                                        <field name="labor_cost"/>
-                                    </list>
-                                </field>
-                            </page>
-                             <page string="Image">
+                             <page string="Attachments">
                                 <group colspan="2" name="product_template_images">
                                     <field
                                         colspan="2"
@@ -197,9 +208,9 @@
                                     />
                                 </group>
                             </page>
-                            <page string="Customer Rating">
+                            <page string="Customer Feedback">
                                 <group>
-                                    <field name="customer_rating" widget = "priority"/>
+                                    <field name="customer_rating" widget = "priority" string = "Rating"/>
                                     <field name="customer_description"/>
                                 </group>
                             </page>

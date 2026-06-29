@@ -11,6 +11,10 @@ class ServicePackages(models.Model):
         string="Package Name",
         required=True
     )
+    product_id = fields.Many2one(
+        comodel_name = "product.template",
+        string = "Package"
+    )
     description = fields.Html(
         string="Description"
     )

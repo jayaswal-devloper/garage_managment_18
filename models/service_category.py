@@ -7,7 +7,8 @@ class ServiceCategory(models.Model):
 
 
     name = fields.Char(
-        string="Service Category"
+        string="Service Category",
+        required = True
     )
     service_type_ids = fields.One2many(
         comodel_name = "service.type",

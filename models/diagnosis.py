@@ -1,6 +1,6 @@
 from odoo import api, fields, models
 
-class VehicalDiagnosis(models.Model):
+class VehicleDiagnosis(models.Model):
     _name = "vehicle.diagnosis"
     _inherit = ['mail.thread']
     _description = "Vehicle Inspection and Diagnosis"
@@ -19,22 +19,28 @@ class VehicalDiagnosis(models.Model):
     )
     state = fields.Selection(
         [('new','New'),('confirmed','Confirmed')],
-        default='new'
+        string="Status",
+        default='new',
+        tracking=True
     )
     job_card_service_charge_line_ids = fields.One2many(
         comodel_name = 'job.card.service.charge.line',
-        inverse_name = 'diagnosis_id'  
+        inverse_name = 'diagnosis_id',
+        string="Service Charges"  
     )
     job_card_vehicle_part_ids = fields.One2many(
         comodel_name = 'job.card.vehicle.spare.parts',
-        inverse_name = 'diagnosis_id' 
+        inverse_name = 'diagnosis_id',
+        string="Spare Parts"
     )
     purchase_order_count = fields.Integer(
-        compute="_compute_order_counts"
+        compute="_compute_order_counts",
+        string="Purchase Orders",
     )
 
     sale_order_count = fields.Integer(
-        compute="_compute_order_counts"
+        compute="_compute_order_counts",
+        string="Sale Orders",
     )
     
 

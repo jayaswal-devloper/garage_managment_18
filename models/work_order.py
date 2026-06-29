@@ -67,11 +67,13 @@ class WorkOrder(models.Model):
     def starting_work(self):
         for rec in self:
             rec.state = 'in_progress'
+            rec.start_time = fields.datetime.today()
 
 
     def ending_work(self):
         for rec in self:
             rec.state = 'finished'
+            rec.end_time = fields.datetime.today()
             rec.job_card_id.vehical_repaird = True
 
     

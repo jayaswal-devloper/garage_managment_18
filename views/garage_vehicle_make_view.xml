@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<record id ="garage_vehicle_mack_list_view" model="ir.ui.view">
+		<field name = "name">garage.vehicle.make.list.view</field>
+		<field name = "model">garage.vehicle.make</field>
+		<field name = "arch" type = "xml">
+			<list>
+				<field name = "name"/>
+				<!-- <field name = "Logo"/> -->
+			</list>
+		</field>
+	</record>
+
+	<record id = "garage_vehicle_mack_form_view" model="ir.ui.view">
+		<field name = "name">garage.vehicle.make.form.view</field>
+		<field name = "model">garage.vehicle.make</field>
+		<field name = "arch" type= "xml">
+			<form>
+				<group>
+					<field name = "name" required = "1"/>
+					<field name = "image_128" widget = "image" required = "1"/>
+				</group>
+			</form>
+		</field>
+	</record>
+
+	<record id = "garage_vehicle_mack_search_view" model = "ir.ui.view">
+		<field name = "name">garage.vehicle.make.search.view</field>
+		<field name = "model">garage.vehicle.make</field>
+		<field name = "arch" type = "xml">
+			<search>
+				<field name = "name"/>
+			</search>
+		</field>
+	</record>
+
+	<record id = "garage_vehicle_mack_kanban_view" model = "ir.ui.view">
+		<field name = "name">garage.vehicle.make.kanban.view</field>
+		<field name = "model">garage.vehicle.make</field>
+		<field name = "arch" type = "xml">
+			<kanban>
+				<templates>
+					<t t-name = "kanban-box">
+						<div>	
+							<div>
+								<field name = "name"/>
+							</div>
+							<div>
+								<field name = "image_128" widget="image"/>
+							</div>
+						</div>
+					</t>
+				</templates>	
+			</kanban>
+		</field>
+	</record>
+
+	<record id = "action_garage_vehicle_make" model = "ir.actions.act_window">
+		<field name = "name">Manufacturer</field>
+		<field name = "res_model">garage.vehicle.make</field>
+		<field name = "view_mode">kanban,list</field>
+		<field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Vehicle Company.
+            </p><p>
+                Click on Create to add a new vehicle manufacturer like BMW, Honda, etc.
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

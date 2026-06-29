@@ -1,6 +1,191 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-	<menuitem id="menu_garage_managment"
+
+    <menuitem id="menu_garage_managment"
+              name="Garage Management"
+              web_icon="garage_managment,static/description/icon.png"
+              groups="garage_managment.group_garage_user"
+              sequence="1"/>
+
+    <menuitem id="menu_vehicle_root"
+              name="Vehicle"
+              parent="menu_garage_managment"
+              sequence="10"/>
+
+    <menuitem id="menu_vehicle_parts"
+              name="Vehicle Parts"
+              parent="menu_vehicle_root"
+              action="product_template_inherited_action"
+              sequence="1"/>
+
+    <menuitem id="menu_vehicle_workshops"
+              name="Workshops"
+              parent="menu_garage_managment"
+              action="action_vehical_worshop"
+              sequence="20"/>
+
+    <menuitem id="menu_service_operations"
+              name="Service Operations"
+              parent="menu_garage_managment"
+              sequence="30"/>
+
+    <menuitem id="menu_service_flow_group"
+              name="Service Flow"
+              parent="menu_service_operations"
+              sequence="1"/>
+
+    <menuitem id="menu_service_request"
+              name="Service Request"
+              parent="menu_service_flow_group"
+              action="action_service_request"
+              sequence="1"/>
+
+    <menuitem id="menu_job_card"
+              name="Job Card"
+              parent="menu_service_flow_group"
+              action="action_job_card"
+              sequence="2"/>
+
+    <menuitem id="menu_vehicle_diagnosis"
+              name="Diagnosis"
+              parent="menu_service_flow_group"
+              action="action_vehicle_diagnosis"
+              sequence="3"/>
+
+    <menuitem id="menu_jobcard_details_group"
+              name="Job Card Details"
+              parent="menu_service_operations"
+              sequence="2"/>
+
+    <menuitem id="menu_vehicle_images"
+              name="Vehicle Images"
+              parent="menu_jobcard_details_group"
+              action="action_job_card_image"
+              sequence="1"/>
+
+    <menuitem id="menu_job_card_checklist"
+              name="Checklist"
+              parent="menu_jobcard_details_group"
+              action="action_job_card_checklist_line"
+              sequence="2"/>
+
+    <menuitem id="menu_job_card_spare_parts"
+              name="Vehicle Parts"
+              parent="menu_jobcard_details_group"
+              action="action_job_card_vehicle_spare_parts"
+              sequence="3"/>
+
+    <menuitem id="menu_job_card_service_charges"
+              name="Service Charges"
+              parent="menu_jobcard_details_group"
+              action="action_job_card_service_charge_line"
+              sequence="4"/>
+
+    <menuitem id="menu_job_card_timesheet"
+              name="Timesheet"
+              parent="menu_jobcard_details_group"
+              action="action_job_card_timesheet_line"
+              sequence="5"/>
+
+    <menuitem id="menu_configuration"
+              name="Configuration"
+              parent="menu_garage_managment"
+              sequence="100"/>
+
+    <menuitem id="menu_vehicle_setup_group"
+              name="Vehicle Setup"
+              parent="menu_configuration"
+              sequence="1"/>
+
+    <menuitem id="menu_garage_vehicle_make"
+              name="Manufacturer"
+              parent="menu_vehicle_setup_group"
+              action="action_garage_vehicle_make"
+              sequence="1"/>
+
+    <menuitem id="menu_garage_vehicle_model"
+              name="Vehicle Model"
+              parent="menu_vehicle_setup_group"
+              action="action_garage_vehicle_model"
+              sequence="2"/>
+
+    <menuitem id="menu_vehicle_category"
+              name="Vehicle Category"
+              parent="menu_vehicle_setup_group"
+              action="action_vehicle_category"
+              sequence="3"/>
+
+    <menuitem id="menu_vehicle_detail"
+              name="Vehicle Detail"
+              parent="menu_vehicle_setup_group"
+              action="action_vehicle_detail"
+              sequence="4"/>
+
+    <menuitem id="menu_service_setup_group"
+              name="Service Setup"
+              parent="menu_configuration"
+              sequence="2"/>
+
+    <menuitem id="menu_services"
+              name="Services"
+              parent="menu_service_setup_group"
+              action="action_service_category"
+              sequence="1"/>
+
+    <menuitem id="menu_service_type"
+              name="Service Type"
+              parent="menu_service_setup_group"
+              action="action_service_type"
+              sequence="2"/>
+
+    <menuitem id="menu_service_packages"
+              name="Service Packages"
+              parent="menu_service_setup_group"
+              action="action_service_packages"
+              sequence="3"/>
+
+    <menuitem id="menu_service_package_history"
+            action="action_service_package_history"
+            name="Service Package history"
+            parent="menu_service_setup_group"
+            sequence="3"/>
+
+    <menuitem id="menu_package_items"
+              name="Package Items"
+              parent="menu_service_setup_group"
+              action="action_package_service_line"
+              sequence="4"/>
+
+    <menuitem id="menu_checklist"
+              name="Checklist"
+              parent="menu_service_setup_group"
+              action="action_service_checklist"
+              sequence="5"/>
+
+    <menuitem id="menu_work_setup_group"
+              name="Work Setup"
+              parent="menu_configuration"
+              sequence="3"/>
+
+    <menuitem id="menu_job_timesheet_config"
+              name="Job Timesheet"
+              parent="menu_work_setup_group"
+              action="action_job_timesheet"
+              sequence="1"/>
+
+    <menuitem id="menu_work_order"
+              name="Work Order"
+              parent="menu_work_setup_group"
+              action="action_work_order"
+              sequence="2"/>
+
+</odoo>
+
+
+
+<!-- <?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem id="menu_garage_managment"
             name="Garage Management"
             groups="garage_managment.group_garage_user"
             sequence="1"/>
@@ -10,17 +195,11 @@
             parent="menu_garage_managment"
             sequence="40"/>
 
-    <menuitem id ="menu_fleet_vehicle_model"
-    		action="fleet_vehicle_model_inherited_action"
-    		parent="menu_vehical"
-    		name = "Vehicle Model"
-    		sequence="10"/>
-
     <menuitem id="menu_vehical_part_model"
-    		action="product_template_inherited_action"
-    		parent="menu_vehical"
-    		name="Vehical Parts"
-    		sequence="5"/>
+            action="product_template_inherited_action"
+            parent="menu_vehical"
+            name="Vehical Parts"
+            sequence="5"/>
 
     <menuitem id="menu_vehical_workshowps"
             action="action_vehical_worshop"
@@ -86,7 +265,7 @@
     <menuitem id="menu_configuration"
             name="Configuration"
             parent="menu_garage_managment"
-            sequence="25"/>
+            sequence="100"/>
 
     <menuitem id="menu_service_category_configuration"
             action="action_service_category"
@@ -118,12 +297,6 @@
             parent="menu_configuration"
             sequence="13"/>
 
-    <menuitem id="menu_job_timesheet_configuration"
-            action="action_job_timesheet"
-            name="Job Timesheet"
-            parent="menu_configuration"
-            sequence="14"/>
-
 
     <menuitem id="menu_work_order_configuration"
             action="action_work_order"
@@ -131,10 +304,44 @@
             parent="menu_configuration"
             sequence="15"/>
 
+    <menuitem id="menu_garage_vehicle_make"
+            action="action_garage_vehicle_make"
+            name="Manufacturer"
+            parent="menu_configuration"
+            sequence="15"/>
+
+    <menuitem id="menu_garage_vehicle_model"
+            action="action_garage_vehicle_model"
+            name="Vehicle Model"
+            parent="menu_configuration"
+            sequence="15"/>
+            
+    <menuitem id = "menu_vehicle_category"
+            action = "action_vehicle_category"
+            name = "Vehicle Category"
+            parent = "menu_configuration"
+            sequence = "15"/>
+
+    <menuitem id = "menu_vehicle_detail"
+            action = "action_vehicle_detail"
+            name = "Vehicle Detail"
+            parent = "menu_configuration"
+            sequence = "15"/>
+
+    AANE ADD NAHI KARELU CHE ME 
     <menuitem id="menu_checklist_line_configuration"
             action="action_garage_checklist_line"
             name="Checklist Item"
             parent="menu_configuration"
             sequence="16"/>
 
+
+    <menuitem id="menu_service_package_history"
+            action="action_service_package_history"
+            name="Service Package history"
+            parent="menu_configuration"
+            sequence="16"/>
+            
+
 </odoo>
+ -->

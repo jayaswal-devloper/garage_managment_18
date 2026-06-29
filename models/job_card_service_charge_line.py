@@ -15,7 +15,7 @@ class JobCardServiceChargeLine(models.Model):
     )
     uom_id = fields.Many2one(
         'uom.uom',
-        string='Unit Of Measure',
+        string='Unit of Measure',
         readonly=True,
         related='product_id.uom_id',
         store=True,
@@ -27,7 +27,9 @@ class JobCardServiceChargeLine(models.Model):
         string = "Unit Price"
     )
     subtotal = fields.Float(
-        string = "Sub Total"
+        string = "Subtotal",
+        compute = "_compute_subtotal",
+        store = True
     )
     job_card_id = fields.Many2one(
         comodel_name = "job.card",
@@ -38,8 +40,8 @@ class JobCardServiceChargeLine(models.Model):
         string = "Diagnosis"
     )
 
-    @api.onchange('quantity','unit_price')
-    def _onchange_subtotal(self):
+    @api.depends('quantity','unit_price')
+    def _compute_subtotal(self):
         for rec in self:
             if rec.quantity and rec.unit_price:
                 rec.subtotal = rec.quantity * rec.unit_price

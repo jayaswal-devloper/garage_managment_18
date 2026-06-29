@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<record id ="garage_vehicle_model_list_view" model="ir.ui.view">
+		<field name = "name">garage.vehicle.model.list.view</field>
+		<field name = "model">garage.vehicle.model</field>
+		<field name = "arch" type = "xml">
+			<list>
+				<field name = "name"/>
+				<field name = "make_id"/>
+				<field name = "vehicle_type"/>
+				<field name = "category_id"/>
+				<field name = "fuel_type"/>
+				<field name = "transmission"/>
+			</list>
+		</field>
+	</record>
+
+	<record id = "garage_vehicle_model_form_view" model="ir.ui.view">
+		<field name = "name">garage.vehicle.model.form.view</field>
+		<field name = "model">garage.vehicle.model</field>
+		<field name = "arch" type= "xml">
+			<form>
+			    <sheet>
+			        <div class="oe_title">
+			            <label for="name"/>
+			            <h1>
+			                <field name="name" required = "1"/>
+			            </h1>
+			        </div>
+
+			        <group>
+			            <group>
+			                <field name="make_id" required = "1"/>
+			                <field name="vehicle_type"/>
+			                <field name="category_id"/>
+			            </group>
+
+			            <group>
+			                <field name="fuel_type"/>
+			                <field name="transmission"/>
+			            </group>
+			        </group>
+
+			    </sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id = "garage_vehicle_model_search_view" model = "ir.ui.view">
+		<field name = "name">garage.vehicle.model.search.view</field>
+		<field name = "model">garage.vehicle.model</field>
+		<field name = "arch" type = "xml">
+			<search>
+				<field name = "name"/>
+				<field name = "make_id"/>
+				<field name = "vehicle_type"/>
+				<field name = "category_id"/>
+				<field name = "fuel_type"/>
+				<field name = "transmission"/>
+			</search>
+		</field>
+	</record>
+
+	<record id = "action_garage_vehicle_model" model = "ir.actions.act_window">
+		<field name = "name">Vehicle Model</field>
+		<field name = "res_model">garage.vehicle.model</field>
+		<field name = "view_mode">list,form</field>
+		<field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Vehicle Model.
+            </p><p>
+                Click on Create to add a new vehicle Model like BMW M5,City,Wagnor etc.
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

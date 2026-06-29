@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+	 <record model="ir.ui.view" id="view_partner_form_vehicle_inherited">
+            <field name="name">partner.view.vehicle.detail</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='vat']" position="after">
+            		<field name = "vehicle_ids" widget = "many2many_tags" readonly = "1" force_save = "1"/>
+            	</xpath>
+
+            	<xpath expr="//field[@name='website']" position = "attributes">
+            		<attribute name = "invisible">1</attribute>
+            	</xpath>
+
+            	<xpath expr="//field[@name='vat']" position = "attributes">
+            		<attribute name = "invisible">1</attribute>
+            	</xpath>
+              	<xpath expr="//field[@name='function']" position = "attributes">
+            		<attribute name = "invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//field[@name='category_id']" position = "attributes">
+            		<attribute name = "invisible">1</attribute>
+            	</xpath>
+              	<xpath expr="//field[@name='title']" position = "attributes">
+            		<attribute name = "invisible">1</attribute>
+            	</xpath>
+
+            	<xpath expr="//page[@name='internal_notes']" position="attributes">
+		            <attribute name="invisible">1</attribute>
+		        </xpath>
+
+		        <xpath expr="//page[@name='contact_addresses']" position="attributes">
+		            <attribute name="invisible">1</attribute>
+		        </xpath>
+		        <xpath expr="//page[@name='sales_purchases']" position="attributes">
+		            <attribute name="invisible">1</attribute>
+		        </xpath>
+				<xpath expr="//page[@name='accounting']" position="attributes">
+		            <attribute name="invisible">1</attribute>
+		        </xpath>
+            	
+            </field>
+        </record>
+</odoo>

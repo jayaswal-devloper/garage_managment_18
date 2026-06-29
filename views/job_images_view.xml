@@ -6,8 +6,7 @@
          <field name="arch" type="xml">
              <list string="Service Category">
              	<field name="job_card_id"/>
-                <field name="image_1920"/>
-                <!-- <field name ="description_image"/> -->
+                <field name = "name"/>
              </list>
          </field>
     </record>
@@ -19,15 +18,18 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="job_card_id" readonly = "True" options = "{'no_open': '1'}"/>
-                        <field name="image_1920"/>
-                        <!-- <field name ="description_image"/> -->
+                        <group>
+                            <field name="job_card_id" readonly="1" options="{'no_open': True}"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_1920'}"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
     <record id="job_card_image_view_search" model="ir.ui.view">
         <field name="name">job.card.image.view.search</field>
         <field name="model">job.card.image</field>

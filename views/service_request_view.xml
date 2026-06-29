@@ -20,7 +20,7 @@
         <field name="name">service.request.view.form</field>
         <field name="model">service.request</field>
         <field name="arch" type="xml">
-            <form string="Vehical Workshop Detail">
+            <form string="Vehicle Service Request">
                 <header>
                     <field name="status" widget = 'statusbar'/>
                     <button name='action_request_confirm'
@@ -51,20 +51,27 @@
                                 string="Job Cards"/>
 
                         </button>
-
                     </div>
-                    <group string="Vehical Service Request ">
-                        <field name="name" readonly = "1"  force_save="1"/>
-		             	<field name="partner_id" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
-		             	<field name="vehical_id" readonly = "status == 'confirmed'" required = "1" 
-                            options="{'no_open': True}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="e.g. Model S" class="w-100" readonly = "1"  force_save="1"/>
+                        </h1>
+                    </div>
+                    <group  string ="Customer And Vehicle Information">
+                        <group>
+    		             	<field name="partner_id" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
+    		             	<field name="vehical_id" readonly = "status == 'confirmed'" required = "1" 
+                                options="{'no_open': True}" domain="[('partner_id', '=', partner_id)]"/>
+                            <field name="package_id" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
+                        </group>
+                    </group>
+                    <group string = "Workshop Information">
 		             	<field name="workshop_id" readonly = "status == 'confirmed'" required = "1" 
                             options="{'no_open': True}"/>
-                        <field name="package_id" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
 		             	<field name="description" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
 		             	<field name="request_date" readonly = "status == 'confirmed'" options="{'no_open': True}"/>
-		             	
                     </group>
+		             	
                 </sheet>
                 <chatter/>
             </form>
